@@ -6,8 +6,64 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
 		<script src="script.js" defer></script>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
 
 		<title>Tic Tac Toe</title>
 	</head>
-	<body></body>
+	<body>
+		<div class="tictactoe">
+			<div class="tictactoeScoreBoard">
+				<div class="xWins stats">
+					<span class="material-icons"> clear </span>
+					<p class="xScore score">0 wins</p>
+				</div>
+				<div class="oWins stats">
+					<span class="material-icons"> radio_button_unchecked </span>
+					<p class="oScore score">0 wins</p>
+				</div>
+				<div class="drawWins stats">
+					<span class="material-icons"> balance </span>
+					<p class="drawScore score">0 draws</p>
+				</div>
+			</div>
+			<div class="tictactoeBoard">
+				<button type="button" id="button one" class="">
+					<div class="userButton x">x</div>
+				</button>
+				<button type="button" id="button two" class="">
+					<div class="userButton o">o</div>
+				</button>
+				<button type="button" id="button three" class=""></button>
+				<button type="button" id="button four" class=""></button>
+				<button type="button" id="button five" class=""></button>
+				<button type="button" id="button six" class=""></button>
+				<button type="button" id="button seven" class=""></button>
+				<button type="button" id="button eight" class=""></button>
+				<button type="button" id="button nine" class=""></button>
+			</div>
+			<div class="toggleXorO">
+				<span class="material-icons toggle active"> clear </span>
+				<span class="material-icons toggle"> radio_button_unchecked </span>
+			</div>
+			<div class="settings">
+				<div class="restartGame settingsButtons">
+					<button type="button" id="settings">
+						<span class="material-icons settingsButton"> restart_alt </span>
+					</button>
+				</div>
+				<div class="gameStatus">
+					<div class="vsplayer gameMode">Player vs Player</div>
+					<div class="vsai gameMode gameModeSelected">Player vs AI</div>
+				</div>
+				<div class="changeSettings settingsButtons">
+					<button type="button" id="settings">
+						<span class="material-icons settingsButton"> settings </span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

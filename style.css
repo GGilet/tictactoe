@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+:root {
+	--main-bg: white;
+	--o-color: #38bcd4;
+	--x-color: #3989d4;
+	--draw-color: #9c9c9c;
+	--grid-lines: rgba(224, 224, 224, 0.933);
+	--light-grid-lines: #f0f3f4;
+	--board-outline: #d0e7ec;
+
+	--reset-settings-bg: #a2b5b8;
+	--font: 'Fredoka One', cursive;
+	--gridSpace: 100px;
+}
+
 html,
 body,
 div,
@@ -126,7 +141,211 @@ table {
 button {
 	background: none;
 	border: none;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 a {
 	text-decoration: none;
+}
+
+body {
+	background-color: var(--main-bg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+
+	font-size: 15px;
+	font-family: var(--font);
+}
+
+/* Toggle Switch */
+
+.tictactoe {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+
+	-webkit-box-shadow: 0px 2px 14px 1px rgba(118, 180, 174, 0.81);
+	box-shadow: 0px 2px 14px 1px rgba(118, 180, 174, 0.81);
+	border: 3px solid var(--board-outline);
+	padding: 3rem;
+}
+
+/* svg {
+	font-size: 2px;
+} */
+/* .scoreBoardIcons {
+	font-size: 5px;
+} */
+.tictactoeScoreBoard {
+	display: flex;
+	align-items: center;
+	gap: 3.25rem;
+	/* font-weight: bolder; */
+	font-size: 1.5em;
+	/* width: 60%; */
+}
+
+.score {
+	display: block;
+}
+
+.stats {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.xWins {
+	color: var(--x-color);
+}
+
+.oWins {
+	color: var(--o-color);
+}
+
+.drawWins {
+	color: var(--draw-color);
+}
+
+button {
+	/* background-color: var(--grid-lines); */
+	width: var(--gridSpace);
+	height: var(--gridSpace);
+	font-size: 7em;
+	font-family: var(--font);
+
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4rem;
+}
+
+.x {
+	color: var(--x-color);
+}
+
+.o {
+	color: var(--o-color);
+}
+
+#button\ one,
+#button\ two,
+#button\ four,
+#button\ five,
+#button\ seven,
+#button\ eight {
+	border-right: 3px solid var(--grid-lines);
+}
+
+#button\ one,
+#button\ two,
+#button\ three,
+#button\ four,
+#button\ five,
+#button\ six {
+	border-bottom: 3px solid var(--grid-lines);
+}
+
+.tictactoeBoard {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.settings {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2em;
+	border-top: 1px solid var(--light-grid-lines);
+	padding-top: 2em;
+}
+
+.gameStatus {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+}
+
+.gameMode {
+	background-color: var(--light-grid-lines);
+	padding: 0.75em 1em;
+	border-radius: 30px;
+	color: var(--reset-settings-bg);
+	cursor: pointer;
+}
+
+.gameMode:hover {
+	background-color: var(--board-outline);
+	color: var(--draw-color);
+}
+
+.gameModeSelected,
+.gameModeSelected:hover {
+	background-color: var(--o-color);
+	color: var(--main-bg);
+	cursor: pointer;
+}
+
+.settingsButton {
+	background-color: var(--reset-settings-bg);
+	border-radius: 100%;
+	font-size: 0.5em !important;
+	padding: 1rem;
+	color: white;
+	cursor: pointer;
+}
+
+.settingsButtons {
+	background-color: white;
+	border: 1px solid var(--light-grid-lines);
+	border-radius: 100%;
+}
+
+.settingsButtons button {
+	padding: 0;
+}
+
+.settingsButton:hover {
+	background-color: var(--board-outline);
+	color: var(--draw-color);
+}
+
+.settingsButton:active {
+	color: var(--draw-color);
+}
+
+.toggleXorO {
+	background-color: var(--light-grid-lines);
+	display: flex;
+	gap: 1em;
+	color: white;
+	padding: 0.5em;
+	border-radius: 30px;
+}
+
+.toggle {
+	background-color: var(--reset-settings-bg);
+	/* padding: 0.25em 0.5em; */
+	padding: 0.25em;
+	border-radius: 30px;
+	cursor: pointer;
+}
+
+.active {
+	cursor: pointer;
+	background-color: var(--x-color);
+	/* padding: 0.25em 0.5em; */
+}
+
+.active:hover {
+	background-color: var(--x-color);
 }
