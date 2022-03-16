@@ -36,7 +36,9 @@
 				<button type="button" id="button two" class="">
 					<div class="userButton o">o</div>
 				</button>
-				<button type="button" id="button three" class=""></button>
+				<button type="button" id="button three" class="">
+					<div class="userButton o">o</div>
+				</button>
 				<button type="button" id="button four" class=""></button>
 				<button type="button" id="button five" class=""></button>
 				<button type="button" id="button six" class=""></button>
@@ -50,7 +52,7 @@
 			</div>
 			<div class="settings">
 				<div class="restartGame settingsButtons">
-					<button type="button" id="settings">
+					<button type="button" id="reset">
 						<span class="material-icons settingsButton"> restart_alt </span>
 					</button>
 				</div>
@@ -62,6 +64,38 @@
 					<button type="button" id="settings">
 						<span class="material-icons settingsButton"> settings </span>
 					</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="modelBox">
+			<div id="settingsContainer" class="settingsContainer">
+				<div class="settingsContainerTitle">Settings</div>
+				<div class="settingsContainerContents">
+					<div class="difficulty">
+						<h3>Difficulty</h3>
+						<input type="radio" name="fav_color" value="Red" />Easy<br />
+						<input
+							type="radio"
+							name="fav_color"
+							value="Blue"
+							checked
+						/>Hard<br />
+						<input type="radio" name="fav_color" value="Yellow" />Unbeatable
+					</div>
+					<div class="colorPalette">
+						<h3>X Color</h3>
+						<input type="color" id="xColor" />
+						<h3>O Color</h3>
+						<input type="color" id="oColor" />
+					</div>
+					<div class="darkMode">
+						<h3>Dark Mode</h3>
+						<label class="switch">
+							<input type="checkbox" />
+							<span class="slider round"></span>
+						</label>
+					</div>
 				</div>
 			</div>
 		</div>

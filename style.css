@@ -160,8 +160,6 @@ body {
 	font-family: var(--font);
 }
 
-/* Toggle Switch */
-
 .tictactoe {
 	display: flex;
 	flex-direction: column;
@@ -175,19 +173,11 @@ body {
 	padding: 3rem;
 }
 
-/* svg {
-	font-size: 2px;
-} */
-/* .scoreBoardIcons {
-	font-size: 5px;
-} */
 .tictactoeScoreBoard {
 	display: flex;
 	align-items: center;
-	gap: 3.25rem;
-	/* font-weight: bolder; */
+	gap: 3.75rem;
 	font-size: 1.5em;
-	/* width: 60%; */
 }
 
 .score {
@@ -215,7 +205,6 @@ body {
 }
 
 button {
-	/* background-color: var(--grid-lines); */
 	width: var(--gridSpace);
 	height: var(--gridSpace);
 	font-size: 7em;
@@ -264,8 +253,6 @@ button {
 	justify-content: space-between;
 	align-items: center;
 	gap: 2em;
-	border-top: 1px solid var(--light-grid-lines);
-	padding-top: 2em;
 }
 
 .gameStatus {
@@ -334,7 +321,6 @@ button {
 
 .toggle {
 	background-color: var(--reset-settings-bg);
-	/* padding: 0.25em 0.5em; */
 	padding: 0.25em;
 	border-radius: 30px;
 	cursor: pointer;
@@ -343,9 +329,139 @@ button {
 .active {
 	cursor: pointer;
 	background-color: var(--x-color);
-	/* padding: 0.25em 0.5em; */
 }
 
 .active:hover {
 	background-color: var(--x-color);
+}
+
+/* Toggle Switch */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: '';
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background-color: #2196f3;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+#modelBox {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	/* padding-top: 100px; */
+	/* margin: 0 auto; */
+	left: 0;
+	top: 0;
+	width: 100vw; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(255, 255, 255, 0.698);
+}
+
+.settingsContainer {
+	font-weight: normal;
+	/* background-color: var(--reset-settings-bg); */
+	padding: 0.25em 0.25em;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 40vh;
+
+	-webkit-box-shadow: 0px 2px 14px 1px rgba(118, 180, 174, 0.81);
+	box-shadow: 0px 2px 14px 1px rgba(118, 180, 174, 0.81);
+	border: 3px solid var(--o-color);
+}
+
+.settingsContainerTitle {
+	background-color: var(--o-color);
+	position: absolute;
+
+	padding: 1em 2em;
+	-moz-transform: rotate(337deg);
+	-webkit-transform: rotate(337deg);
+	-o-transform: rotate(337deg);
+	-ms-transform: rotate(337deg);
+	transform: rotate(337deg);
+
+	left: 18.5%;
+	/* top: 50%; */
+}
+
+.settingsContainerContents {
+	background-color: rgb(255, 255, 255);
+	padding: 4em 2em;
+	display: flex;
+	justify-content: space-between;
+}
+
+.settingsContainerContents h3 {
+	display: block;
+	font-size: 1.5em;
+}
+
+.colorPalette {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1em;
+}
+
+.darkMode {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5em;
 }
