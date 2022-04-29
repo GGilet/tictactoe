@@ -5,15 +5,15 @@
 const settingsButton = document.querySelector('#settings');
 const boardButtons = document.querySelectorAll('.boardButtons');
 const resetButton = document.querySelector('#reset');
-
-// let playerO;
-// let playerX;
-// let playerAI;
-let XTurn = false;
+const xScore = document.querySelector('.xScore');
+const oScore = document.querySelector('.oScore');
+const drawScore = document.querySelector('.drawScore');
+let XTurn = true;
 let playerXHasWon = false;
 let AIHasWon = false;
 let playerOHasWon = false;
-// let AIHasWon = false;
+let draws = 0;
+let numberOfTurns = 0;
 
 settingsButton.addEventListener('click', () => {
 	const modelBox = document.querySelector('#modelBox');
@@ -27,8 +27,6 @@ window.onclick = function (event) {
 };
 
 const TicTacToeBoard = (() => {
-	// const gameBoard = () => gameBoard.updateBoard();
-	// gameBoard;
 	const updateBoard = () =>
 		(function () {
 			let gameBoard = [];
@@ -36,6 +34,9 @@ const TicTacToeBoard = (() => {
 			for (let i = 0; i < boardButtons.length; i++) {
 				gameBoard.push(boardButtons[i].firstElementChild.innerText);
 			}
+			xScore.firstChild.innerText = playerO.getScore();
+			oScore.firstChild.innerText = playerX.getScore();
+			drawScore.firstChild.innerText = draws;
 			return { gameBoard };
 		})();
 
@@ -53,7 +54,8 @@ const TicTacToeBoard = (() => {
 				boardButtons[i].firstElementChild.classList.remove('x');
 				boardButtons[i].firstElementChild.classList.remove('o');
 			}
-			XTurn = false;
+			numberOfTurns = 0;
+			XTurn = true;
 		})();
 
 	const isSpaceEmpty = (button) => {
@@ -71,28 +73,107 @@ const TicTacToeBoard = (() => {
 			for (let i = 0; i < boardButtons.length; i++) {
 				gameBoard.push(boardButtons[i].firstElementChild.innerText);
 			}
-
-			if (gameBoard[4] == 'x' && gameBoard[0] == 'x' && gameBoard[8] == 'x') {
-				playerXHasWon = true;
+			if (XTurn == true) {
+				if (gameBoard[4] == 'x' && gameBoard[0] == 'x' && gameBoard[8] == 'x') {
+					playerXHasWon = true;
+				} else if (
+					gameBoard[4] == 'x' &&
+					gameBoard[2] == 'x' &&
+					gameBoard[6] == 'x'
+				) {
+					playerXHasWon = true;
+				} else if (
+					gameBoard[4] == 'x' &&
+					gameBoard[1] == 'x' &&
+					gameBoard[7] == 'x'
+				) {
+					playerXHasWon = true;
+				} else if (
+					gameBoard[4] == 'x' &&
+					gameBoard[3] == 'x' &&
+					gameBoard[5] == 'x'
+				) {
+					playerXHasWon = true;
+				} else if (
+					gameBoard[0] == 'x' &&
+					gameBoard[3] == 'x' &&
+					gameBoard[6] == 'x'
+				) {
+					playerXHasWon = true;
+				} else if (
+					gameBoard[0] == 'x' &&
+					gameBoard[1] == 'x' &&
+					gameBoard[2] == 'x'
+				) {
+					playerXHasWon = true;
+				} else if (
+					gameBoard[6] == 'x' &&
+					gameBoard[7] == 'x' &&
+					gameBoard[8] == 'x'
+				) {
+					playerXHasWon = true;
+				} else if (
+					gameBoard[2] == 'x' &&
+					gameBoard[5] == 'x' &&
+					gameBoard[8] == 'x'
+				) {
+					playerXHasWon = true;
+				}
+			} else {
+				if (gameBoard[4] == 'o' && gameBoard[0] == 'o' && gameBoard[8] == 'o') {
+					playerOHasWon = true;
+				} else if (
+					gameBoard[4] == 'o' &&
+					gameBoard[2] == 'o' &&
+					gameBoard[6] == 'o'
+				) {
+					playerOHasWon = true;
+				} else if (
+					gameBoard[4] == 'o' &&
+					gameBoard[1] == 'o' &&
+					gameBoard[7] == 'o'
+				) {
+					playerOHasWon = true;
+				} else if (
+					gameBoard[4] == 'o' &&
+					gameBoard[3] == 'o' &&
+					gameBoard[5] == 'o'
+				) {
+					playerOHasWon = true;
+				} else if (
+					gameBoard[0] == 'o' &&
+					gameBoard[3] == 'o' &&
+					gameBoard[6] == 'o'
+				) {
+					playerOHasWon = true;
+				} else if (
+					gameBoard[0] == 'o' &&
+					gameBoard[1] == 'o' &&
+					gameBoard[2] == 'o'
+				) {
+					playerOHasWon = true;
+				} else if (
+					gameBoard[6] == 'o' &&
+					gameBoard[7] == 'o' &&
+					gameBoard[8] == 'o'
+				) {
+					playerOHasWon = true;
+				} else if (
+					gameBoard[2] == 'o' &&
+					gameBoard[5] == 'o' &&
+					gameBoard[8] == 'o'
+				) {
+					playerOHasWon = true;
+				}
 			}
-			return { playerXHasWon };
-		})();
-	// const addMove = (index, sign) => {
-	// 	for (let i = 1; i <= index; i++) {
-	// 		gameBoard[i] == sign;
-	// 	}
-	// 	return gameBoard;
-	// };
 
-	// const displayBoard = () => gameBoard.generateGameArray();
-	// const updateGameBoard
+			return { playerXHasWon, playerOHasWon };
+		})();
 	return {
 		updateBoard,
-		// addMove,
 		checkIfGameWon,
 		resetGameBoard,
 		resetWinStatus,
-		// displayBoard,
 	};
 })();
 
@@ -185,40 +266,56 @@ playerX.initializeAI();
 
 resetButton.addEventListener('click', () => {
 	gameBoard.resetGameBoard();
+	playGame();
 });
 
 function resetPlayerWin() {}
 
-boardButtons.forEach((button) => {
-	button.addEventListener('click', () => {
-		console.log(XTurn);
-		if (button.innerText !== '') {
-			return;
-		}
-		if (playerXHasWon == true || playerOHasWon == true) {
-			return;
-		}
-		if (XTurn == true) {
-			button.firstElementChild.innerText = playerO.getSign();
-			// console.log(playerX.currentStats());
-			button.firstElementChild.classList.toggle(playerO.getSign());
-			gameBoard.checkIfGameWon();
-			if (playerXHasWon == true) playerX.addPoint();
+function playGame() {
+	boardButtons.forEach((button) => {
+		button.addEventListener('click', () => {
+			if (button.innerText !== '') {
+				return;
+			}
 
-			XTurn = false;
-		} else {
-			button.firstElementChild.innerText = playerX.getSign();
-			button.firstElementChild.classList.toggle(playerX.getSign());
-			gameBoard.checkIfGameWon();
-			if (playerXHasWon == true) playerX.addPoint();
-			XTurn = true;
-		}
-		// gameBoard.checkIfGameWon();
-		gameBoard.resetWinStatus();
+			if (XTurn == true) {
+				button.firstElementChild.innerText = playerO.getSign();
+				button.firstElementChild.classList.toggle(playerO.getSign());
+				gameBoard.checkIfGameWon();
+				XTurn = false;
+				if (playerXHasWon == true) {
+					playerO.addPoint();
+					gameBoard.resetGameBoard();
+					gameBoard.updateBoard();
+				}
+				numberOfTurns++;
+			} else {
+				button.firstElementChild.innerText = playerX.getSign();
+				button.firstElementChild.classList.toggle(playerX.getSign());
+				gameBoard.checkIfGameWon();
+				XTurn = true;
 
-		console.log(playerX.currentStats());
+				if (playerOHasWon == true) {
+					playerX.addPoint();
+					gameBoard.resetGameBoard();
+					gameBoard.updateBoard();
+				}
+				numberOfTurns++;
+			}
+			if (numberOfTurns == 9) {
+				draws++;
 
-		console.log(playerO.currentStats());
-		// console.log(gameBoard.checkIfGameWon());
+				gameBoard.resetGameBoard();
+				gameBoard.updateBoard();
+			}
+
+			console.log(gameBoard.updateBoard().gameBoard);
+		});
 	});
-});
+}
+
+playGame();
+
+/*
+Make a checkIfDraw in the gameBoard, filter for empty string. If return -1, draw ++, reset board, then update board
+*/
