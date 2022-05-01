@@ -1,7 +1,3 @@
-// import player from './player';
-
-// import player from './player';
-
 const settingsButton = document.querySelector('#settings');
 const boardButtons = document.querySelectorAll('.boardButtons');
 const resetButton = document.querySelector('#reset');
@@ -56,6 +52,8 @@ const TicTacToeBoard = (() => {
 			}
 			numberOfTurns = 0;
 			XTurn = true;
+			playerXHasWon = false;
+			playerOHasWon = false;
 		})();
 
 	const isSpaceEmpty = (button) => {
@@ -177,8 +175,6 @@ const TicTacToeBoard = (() => {
 	};
 })();
 
-//player needs sign and score
-//board needs to manage the
 const gamePlayer = () => {
 	let name, sign, score;
 	const getName = () => name;
@@ -204,6 +200,7 @@ const gamePlayer = () => {
 			score = 0;
 			return { name, sign, score };
 		})();
+
 	const initializeAI = () =>
 		(function () {
 			let playerSign = document.querySelectorAll('.toggle');
@@ -221,12 +218,16 @@ const gamePlayer = () => {
 				}
 			}
 			score = 0;
-			// name = 'AI';
-
 			return { name, sign, score };
 		})();
+
 	const addPoint = () => {
 		score = getScore() + 1;
+		return score;
+	};
+
+	const resetPoints = () => {
+		score = 0;
 		return score;
 	};
 
@@ -238,12 +239,12 @@ const gamePlayer = () => {
 	const currentStats = () => {
 		return { name, sign, score };
 	};
-	currentTiles = () => function () {};
 
 	return {
 		initializePlayer,
 		initializeAI,
 		addPoint,
+		resetPoints,
 		currentStats,
 		getName,
 		getScore,
@@ -251,21 +252,20 @@ const gamePlayer = () => {
 	};
 };
 
-// let gameBoard = TicTacToeBoard;
 let gameBoard = TicTacToeBoard;
-// let gameBoard2 = TicTacToeBoard;
-// console.log(gameBoard.generateGameArray());
-
-// let playerOne = gamePlayer('Player 1', 0, 'o');
-
 let playerO = gamePlayer();
-playerO.initializePlayer();
-
 let playerX = gamePlayer();
+
+playerO.initializePlayer();
 playerX.initializeAI();
 
 resetButton.addEventListener('click', () => {
 	gameBoard.resetGameBoard();
+	playerX.resetPoints();
+	playerO.resetPoints();
+	draws = 0;
+
+	gameBoard.updateBoard();
 	playGame();
 });
 
@@ -274,6 +274,7 @@ function resetPlayerWin() {}
 function playGame() {
 	boardButtons.forEach((button) => {
 		button.addEventListener('click', () => {
+			console.log(numberOfTurns);
 			if (button.innerText !== '') {
 				return;
 			}
@@ -283,39 +284,31 @@ function playGame() {
 				button.firstElementChild.classList.toggle(playerO.getSign());
 				gameBoard.checkIfGameWon();
 				XTurn = false;
+				numberOfTurns++;
 				if (playerXHasWon == true) {
 					playerO.addPoint();
 					gameBoard.resetGameBoard();
 					gameBoard.updateBoard();
 				}
-				numberOfTurns++;
 			} else {
 				button.firstElementChild.innerText = playerX.getSign();
 				button.firstElementChild.classList.toggle(playerX.getSign());
 				gameBoard.checkIfGameWon();
 				XTurn = true;
-
+				numberOfTurns++;
 				if (playerOHasWon == true) {
 					playerX.addPoint();
 					gameBoard.resetGameBoard();
 					gameBoard.updateBoard();
 				}
-				numberOfTurns++;
 			}
 			if (numberOfTurns == 9) {
+				gameBoard.resetGameBoard();
 				draws++;
 
-				gameBoard.resetGameBoard();
 				gameBoard.updateBoard();
 			}
-
-			console.log(gameBoard.updateBoard().gameBoard);
 		});
 	});
 }
-
 playGame();
-
-/*
-Make a checkIfDraw in the gameBoard, filter for empty string. If return -1, draw ++, reset board, then update board
-*/
